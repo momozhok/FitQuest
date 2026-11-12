@@ -3,8 +3,8 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
-	"log"
+		"log"
+	"os"
 	"net/http"
 	"time"
 
@@ -47,8 +47,12 @@ func main() {
 	mux.HandleFunc("/activities", s.handleActivity)
 	mux.HandleFunc("/creature", s.handleCreature)
 
-	fmt.Println("FitQuest backend running on http://localhost:8080")
-	if err := http.ListenAndServe(":8080", mux); err != nil {
+	addr := os.Getenv("LISTEN_ADDR")
+	if addr == "" {
+		addr = "0.0.0.0:8080"
+	}
+	log.Printf("FitQuest backend listening on %s (container network)", addr)
+	if err := http.ListenAndServe(addr, mux); err != nil {
 		log.Fatalf("server error: %v", err)
 	}
 }
