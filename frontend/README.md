@@ -1,43 +1,31 @@
-# Svelte + Vite
+# FitQuest — frontend
 
-This template should help get you started developing with Svelte in Vite.
+Une page d’accueil et un espace personnel en français, avec thème sombre par défaut et mode clair mémorisé. Direction visuelle : charbon, ivoire et vert sauge, typographies Manrope et DM Sans, compagnon original Sprig.
 
-## Recommended IDE Setup
+## Utilisation
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+Ouvrir `apercu.html` directement dans un navigateur pour essayer la version autonome. La créature est incluse dans ce fichier. Les polices Google Fonts et la photographie Unsplash utilisent Internet ; des polices système prennent le relais hors ligne.
 
-## Need an official Svelte framework?
+Pour le projet Vite / Svelte existant : `npm install`, puis `npm run dev` ou `npm run build`. Le Dockerfile et le backend ne sont pas modifiés. `public/images/sprig.webp` est servi à `/images/sprig.webp` par Vite et copié dans le build.
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+## Interactions
 
-## Technical considerations
+- Navigation entre accueil et espace personnel, puis activités, compagnon et objectifs.
+- Ajout d’une activité avec durée et date obligatoires, distance facultative.
+- Statistiques, graphique 7/14 jours, progression et XP mis à jour à partir des activités locales.
+- Modification du prénom et de l’objectif hebdomadaire.
+- Préférence de thème, activités et profil sauvegardés dans localStorage (`fq.theme`, `fq.activities`, `fq.profile`).
+- Données initiales fictives, explicitement présentées comme un espace de démonstration.
+- Mise en page adaptative, navigation mobile, focus clavier et respect des mouvements réduits.
 
-**Why use this over SvelteKit?**
+Cette version ne réalise aucune requête API et n’offre pas d’authentification. Les données ne sont pas partagées entre appareils. Sprig est une illustration fixe.
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+## Validation
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+Syntaxe JavaScript vérifiée avec `node --check src/experience.js`. Accueil et tableau de bord vérifiés visuellement dans Thorium. La compilation Vite n’a pas pu être exécutée : téléchargement des dépendances bloqué par le réseau de la session. Les formulaires, les deux thèmes et les formats mobiles nécessitent une dernière vérification dans un navigateur avant publication.
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+## Visuels
 
-**Why include `.vscode/extensions.json`?**
+Sprig : illustration originale créée avec le générateur d’images intégré. Brief : petite créature forestière vert mousse, oreilles en feuilles, visage et ventre crème, matière feutre/argile, assise sur un rocher, lumière douce, ambiance de forêt sombre, sans texte ni logo.
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+Paysage : https://images.unsplash.com/photo-1472396961693-142e6e269027 (Unsplash). Polices : Google Fonts, DM Sans et Manrope.
