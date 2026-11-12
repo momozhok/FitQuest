@@ -1,11 +1,18 @@
 services:
   backend:
     build:
-      context: ./backend
+      context: ./le-frigo
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - fitquest_sqlite:/data
+      - lefrigo_sqlite:/data
+    environment:
+      SECURE_COOKIES: ${SECURE_COOKIES:-false}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     expose:
       - "8080"
     networks:
@@ -13,18 +20,19 @@ services:
 
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: ./le-frigo
+      dockerfile: Dockerfile.frontend
     restart: unless-stopped
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     expose:
       - "80"
     networks:
       - fitquest
 
 volumes:
-  fitquest_sqlite:
+  lefrigo_sqlite:
 
 networks:
   fitquest:

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f9f6f0" />
+    <meta
+      name="description"
+      content="Cuisine avec ce que tu as déjà. Des recettes simples, un frigo organisé et moins de gaspillage."
+    />
+    <title>Le Frigo — Ce soir, on cuisine quoi ?</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Aller au contenu</a>
+    <header>
+      <a class="brand" href="/" aria-label="Le Frigo, accueil"
+        ><svg
+          width="29"
+          height="36"
+          viewBox="0 0 29 36"
+          fill="none"
+          aria-hidden="true"
+        >
+          <rect
+            x="3"
+            y="2"
+            width="23"
+            height="32"
+            rx="6"
+            stroke="currentColor"
+            stroke-width="2.3"
+          />
+          <path
+            d="M3 15h23M9 8v3M9 20v6"
+            stroke="currentColor"
+            stroke-width="2.3"
+            stroke-linecap="round"
+          /></svg
+        ><span>le frigo<span class="dot">.</span></span></a
+      >
+      <nav aria-label="Navigation principale">
+        <button data-page="kitchen" class="active">Ma cuisine</button
+        ><button data-page="favorites">Mes recettes</button
+        ><button data-page="groceries">
+          Liste de courses <span id="grocery-count"></span>
+        </button>
+      </nav>
+      <div class="header-actions">
+        <button
+          id="theme"
+          class="icon-button"
+          aria-label="Passer au mode sombre"
+        >
+          ☾</button
+        ><button id="account" class="avatar" aria-label="Mon compte">↗</button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">BIEN MANGER, AVEC CE QU’ON A.</p>
+          <h1>Ce soir, on cuisine quoi ?</h1>
+          <p class="subtitle">Ouvre ton frigo. On s’occupe des idées.</p>
+        </div>
+        <button id="surprise" class="outline">
+          ⤨ <span>Surprends-moi</span>
+        </button>
+      </section>
+      <div id="app"><p class="loading">On ouvre la cuisine…</p></div>
+    </main>
+    <footer>
+      <a class="brand small" href="/">le frigo<span class="dot">.</span></a>
+      <p>Moins de gaspillage. Plus de bonnes idées.</p>
+      <span>Fait pour les vraies cuisines.</span>
+    </footer>
+    <dialog id="modal"><div id="modal-content"></div></dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

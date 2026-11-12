@@ -1,0 +1,21 @@
+name: Le Frigo
+on:
+  push:
+    branches: [main, feat/le-frigo]
+  pull_request:
+    paths: ['le-frigo/**', 'docker-compose.yml', '.github/workflows/le-frigo.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run check && npm test
+        working-directory: le-frigo
+      - run: docker compose config --quiet
+      - run: docker build -t le-frigo-api ./le-frigo
+      - run: docker build -t le-frigo-web -f le-frigo/Dockerfile.frontend ./le-frigo

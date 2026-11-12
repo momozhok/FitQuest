@@ -1,0 +1,6 @@
+# Use from the repository root:
+# docker compose -f docker-compose.yml -f le-frigo/compose.local.yaml up --build
+services:
+  frontend:
+    ports:
+      - "127.0.0.1:${FRIGO_PORT:-8088}:80"
