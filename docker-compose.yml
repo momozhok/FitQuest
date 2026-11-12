@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - fitquest_sqlite:/data
+    expose:
+      - "8080"
+    networks:
+      - fitquest
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    expose:
+      - "80"
+    networks:
+      - fitquest
+
+volumes:
+  fitquest_sqlite:
+
+networks:
+  fitquest:
